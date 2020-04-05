@@ -5,10 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
+filename = 'ckd.csv'
 
 # FUNCTIONS
-def openckdfile():
-    glucose, hemoglobin, classification = np.loadtxt('ckd.csv', delimiter=',', skiprows=1, unpack=True)
+def openckdfile(filename):
+    glucose, hemoglobin, classification = np.loadtxt(filename, delimiter=',', skiprows=1, unpack=True)
     return glucose, hemoglobin, classification
 
 def normalizeData(glucose, hemoglobin, classification):
@@ -43,3 +44,51 @@ def createTestCase():
     newglucose = random.randint(70, 490)
     newhemoglobin = random.uniform(3.8, 17.8)
     return newglucose, newhemoglobin
+
+def calculateDistanceArray(newglucose, newhemoglobin, glucose, hemoglobin):
+    distanceArray = []
+    g_distance = []
+    h_distance = []
+    
+    for line in glucose:
+        Gd = (newglucose-glucose)**2
+        g_distance.append(Gd)
+        
+    for line in hemoglobin:
+        Hd = (newhemoglobin-hemoglobin)**2
+        h_distance.append(Hd)
+    
+    distanceArray = np.sqrt(g_distance + h_distance)
+    
+    return distanceArray
+
+def nearestNeighborClassifier(newglucose, newhemoglobin, glucose, hemoglobin, classification):
+    return
+
+    
+    
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
